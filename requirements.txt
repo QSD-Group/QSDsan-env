@@ -22,5 +22,5 @@ country-converter
 nbgitpuller
 
 # To enable slide show
-rise==5.7.1
 jupyter_contrib_nbextensions==0.7.0
+rise==5.7.1
