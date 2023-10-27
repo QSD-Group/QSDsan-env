@@ -24,3 +24,8 @@ nbgitpuller
 # To enable slide show
 jupyter_contrib_nbextensions==0.7.0
 rise==5.7.1
+
+# For the interactive modules
+ipywidgets
+jupyterlab-widgets
+widgetsnbextension
