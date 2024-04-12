@@ -31,3 +31,6 @@ rise==5.7.1
 ipywidgets
 jupyterlab-widgets
 widgetsnbextension
+
+# Machine learning
+xgboost
