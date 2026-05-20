@@ -1,20 +1,28 @@
 name: binder
+
+# Builds the QSDsan-env image from .binder/ config and pushes it to Docker
+# Hub. The BINDER_CACHE step then writes a small binder/Dockerfile to the
+# repo that points at the pushed image; on the next mybinder.org launch,
+# repo2docker prefers binder/ over .binder/ and just pulls the prebuilt
+# image instead of building from scratch. Result: fast student launches
+# without depending on mybinder.org's API (which used to break here when
+# the action's container had an outdated CA bundle).
+
 on:
   push:
     branches: [main]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout files in repo
+        uses: actions/checkout@v6
 
-    - name: checkout files in repo
-      uses: actions/checkout@v4
-
-    - name: update jupyter dependencies with repo2docker and cache binder build on mybinder.org
-      uses: jupyterhub/repo2docker-action@master
-      with:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        MYBINDERORG_CACHE: true
-        NO_PUSH: true
-        MYBINDERORG_TAG: ${{ github.event.ref }} # This builds the container on mybinder.org with the branch that was pushed on.
+      - name: build image with repo2docker, push to Docker Hub, commit binder/Dockerfile
+        uses: jupyterhub/repo2docker-action@master
+        with:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          BINDER_CACHE: true
+          COMMIT_MSG: "update cached binder image"
