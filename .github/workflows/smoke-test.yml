@@ -9,13 +9,17 @@ on:
     paths:
       - requirements.txt
       - requirements.in
-      - .binder/**
+      - runtime.txt
+      - apt.txt
+      - postBuild
       - .github/workflows/smoke-test.yml
   pull_request:
     paths:
       - requirements.txt
       - requirements.in
-      - .binder/**
+      - runtime.txt
+      - apt.txt
+      - postBuild
   schedule:
     # Weekly, Mondays 12:00 UTC. Surfaces upstream breakage early.
     - cron: '0 12 * * 1'

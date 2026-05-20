@@ -54,23 +54,23 @@ jobs:
             --output-file=requirements.txt \
             requirements.in
 
-      - name: Sync .binder/runtime.txt to match detected Python
+      - name: Sync runtime.txt to match detected Python
         run: |
           NEW_RUNTIME="python-${{ steps.pyver.outputs.version }}"
-          OLD_RUNTIME=$(tr -d '[:space:]' < .binder/runtime.txt)
+          OLD_RUNTIME=$(tr -d '[:space:]' < runtime.txt)
           if [ "$NEW_RUNTIME" != "$OLD_RUNTIME" ]; then
-            echo "$NEW_RUNTIME" > .binder/runtime.txt
-            echo "Bumped .binder/runtime.txt: $OLD_RUNTIME -> $NEW_RUNTIME"
+            echo "$NEW_RUNTIME" > runtime.txt
+            echo "Bumped runtime.txt: $OLD_RUNTIME -> $NEW_RUNTIME"
           fi
 
       - name: Commit and push if anything changed
         run: |
-          if git diff --quiet requirements.txt .binder/runtime.txt; then
+          if git diff --quiet requirements.txt runtime.txt; then
             echo "No changes; nothing to commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add requirements.txt .binder/runtime.txt
+          git add requirements.txt runtime.txt
           git commit -m "regenerate lockfile (python ${{ steps.pyver.outputs.version }}, Linux)"
           git push

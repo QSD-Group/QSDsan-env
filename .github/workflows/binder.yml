@@ -1,12 +1,16 @@
 name: binder
 
-# Builds the QSDsan-env image from .binder/ config and pushes it to Docker
-# Hub. The BINDER_CACHE step then writes a small binder/Dockerfile to the
-# repo that points at the pushed image; on the next mybinder.org launch,
-# repo2docker prefers binder/ over .binder/ and just pulls the prebuilt
-# image instead of building from scratch. Result: fast student launches
+# Builds the QSDsan-env image from root-level repo2docker config
+# (requirements.txt, runtime.txt, apt.txt, postBuild) and pushes it to
+# Docker Hub. The BINDER_CACHE step then writes a small binder/Dockerfile
+# to the repo that points at the pushed image; on the next mybinder.org
+# launch, repo2docker uses binder/Dockerfile and just pulls the prebuilt
+# image instead of building from scratch. Result: fast launches
 # without depending on mybinder.org's API (which used to break here when
 # the action's container had an outdated CA bundle).
+#
+# Note: BINDER_CACHE refuses to run if a .binder/ directory exists,
+# which is why config was flattened to repo root.
 
 on:
   push:
