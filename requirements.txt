@@ -326,10 +326,7 @@ chemicals==1.5.1 \
 colorama==0.4.6 \
     --hash=sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44 \
     --hash=sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6
-    # via
-    #   colorpalette
-    #   ipython
-    #   tqdm
+    # via colorpalette
 colorpalette==0.3.3 \
     --hash=sha256:e4bb8f5b087b5719bd01e39a4df2a646db15cad9fe765234dd8ba85b47488ceb
     # via thermosteam
@@ -1626,6 +1623,10 @@ patsy==1.0.2 \
     --hash=sha256:37bfddbc58fcf0362febb5f54f10743f8b21dd2aa73dec7e7ef59d1b02ae668a \
     --hash=sha256:cdc995455f6233e90e22de72c37fcadb344e7586fb83f06696f54d92f8ce74c0
     # via fdasrsf
+pexpect==4.9.0 \
+    --hash=sha256:7236d1e080e4936be2dc3e326cec0af72acf9212a7e1d060210e70a47e253523 \
+    --hash=sha256:ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f
+    # via ipython
 pillow==12.2.0 \
     --hash=sha256:00a2865911330191c0b818c59103b58a5e697cae67042366970a6b6f1b20b7f9 \
     --hash=sha256:01afa7cf67f74f09523699b4e88c73fb55c13346d212a59a2db1f86b0a63e8c5 \
@@ -1776,6 +1777,12 @@ psutil==7.2.2 \
     # via
     #   ipykernel
     #   ipython
+ptyprocess==0.7.0 \
+    --hash=sha256:4b41f3967fce3af57cc7e94b888626c18bf37a083e3651ca8feeb66d492fef35 \
+    --hash=sha256:5c5d0a3b48ceee0b48485e0c26037c0acd7d29765ca3fbb5cb3831d347423220
+    # via
+    #   pexpect
+    #   terminado
 pure-eval==0.2.3 \
     --hash=sha256:1db8e35b67b3d218d818ae653e27f06c3aa420901fa7b081ca98cbedc874e0d0 \
     --hash=sha256:5f4e983f40564c576c7c8635ae88db5956bb2229d7e9237d03b3c0b0190eaf42
@@ -1818,27 +1825,6 @@ python-json-logger==4.1.0 \
     --hash=sha256:132994765cf75bf44554be9aa49b06ef2345d23661a96720262716438141b6b2 \
     --hash=sha256:b396b9e3ed782b09ff9d6e4f1683d46c83ad0d35d2e407c09a9ebbf038f88195
     # via jupyter-events
-pywinpty==3.0.3 \
-    --hash=sha256:0c37e224a47a971d1a6e08649a1714dac4f63c11920780977829ed5c8cadead1 \
-    --hash=sha256:0f10e81d52d7f2c4d927f645f247028e64eaf205a3ed9e64dbd998122108a218 \
-    --hash=sha256:15c7c0b6f8e9d87aabbaff76468dabf6e6121332c40fc1d83548d02a9d6a3759 \
-    --hash=sha256:15e79d870e18b678fb8a5a6105fd38496b55697c66e6fc0378236026bc4d59e9 \
-    --hash=sha256:340ccacb4d74278a631923794ccd758471cfc8eeeeee4610b280420a17ad1e82 \
-    --hash=sha256:34789d685fc0d547ce0c8a65e5a70e56f77d732fa6e03c8f74fefb8cbb252019 \
-    --hash=sha256:3f07a6cf1c1d470d284e614733c3d0f726d2c85e78508ea10a403140c3c0c18a \
-    --hash=sha256:523441dc34d231fb361b4b00f8c99d3f16de02f5005fd544a0183112bcc22412 \
-    --hash=sha256:9c91dbb026050c77bdcef964e63a4f10f01a639113c4d3658332614544c467ab \
-    --hash=sha256:c4e9c3dff7d86ba81937438d5819f19f385a39d8f592d4e8af67148ceb4f6ab5 \
-    --hash=sha256:c9081df0e49ffa86d15db4a6ba61530630e48707f987df42c9d3313537e81fc0 \
-    --hash=sha256:d4b6b7b0fe0cdcd02e956bd57cfe9f4e5a06514eecf3b5ae174da4f951b58be9 \
-    --hash=sha256:dff25a9a6435f527d7c65608a7e62783fc12076e7d44487a4911ee91be5a8ac8 \
-    --hash=sha256:fbc1e230e5b193eef4431cba3f39996a288f9958f9c9f092c8a961d930ee8f68 \
-    --hash=sha256:fe1f7911805127c94cf51f89ab14096c6f91ffdcacf993d2da6082b2142a2523 \
-    --hash=sha256:ff05f12d775b142b11c6fe085129bdd759b61cf7d41da6c745e78e3a1ef5bf40
-    # via
-    #   jupyter-server
-    #   jupyter-server-terminals
-    #   terminado
 pyyaml==6.0.3 \
     --hash=sha256:00c4bdeba853cc34e7dd471f16b4114f4162dc03e6b7afcc2128711f0eca823c \
     --hash=sha256:0150219816b6a1fa26fb4699fb7daa9caf09eb1999f3b70fb6e786805e80375a \
@@ -2422,9 +2408,7 @@ typing-extensions==4.15.0 \
 tzdata==2026.2 \
     --hash=sha256:9173fde7d80d9018e02a662e168e5a2d04f87c41ea174b139fbef642eda62d10 \
     --hash=sha256:bbe9af844f658da81a5f95019480da3a89415801f6cc966806612cc7169bffe7
-    # via
-    #   arrow
-    #   pandas
+    # via arrow
 uri-template==1.3.0 \
     --hash=sha256:0e00f8eb65e18c7de20d595a14336e9f337ead580c70934141624b6d1ffdacc7 \
     --hash=sha256:a44a133ea12d44a0c0f06d7d42a52d71282e77e2f937d8abd5655b8d56fc1363
