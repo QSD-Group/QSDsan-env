@@ -1,0 +1,75 @@
+name: lock
+
+# Regenerates requirements.txt from requirements.in on Linux using the same
+# Python version QSDsan declares in its pyproject.toml. This must run in CI
+# because pip-tools produces platform-specific locks; a lock built on Windows
+# or macOS omits Linux-only deps like pexpect and pulls in Windows-only deps
+# like pywinpty, breaking the Binder image build.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - requirements.in
+      - .github/workflows/lock.yaml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate-lock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Detect Python version from QSDsan's pyproject.toml
+        id: pyver
+        run: |
+          QSDSAN_VERSION=$(grep -oP '(?<=qsdsan==)\d+\.\d+\.\d+' requirements.in)
+          echo "Tracking qsdsan==$QSDSAN_VERSION"
+          PY_VER=$(curl -fsSL \
+            "https://raw.githubusercontent.com/QSD-Group/QSDsan/v${QSDSAN_VERSION}/pyproject.toml" \
+            | python3 -c "import sys, re, tomllib; \
+spec = tomllib.loads(sys.stdin.read())['project']['requires-python']; \
+m = re.search(r'>=\s*(\d+\.\d+)', spec); \
+print(m.group(1))")
+          echo "Detected Python ${PY_VER} from QSDsan ${QSDSAN_VERSION}"
+          echo "version=${PY_VER}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ steps.pyver.outputs.version }}
+
+      - name: Install pip-tools
+        run: pip install pip-tools
+
+      - name: Regenerate requirements.txt
+        run: |
+          pip-compile \
+            --generate-hashes \
+            --resolver=backtracking \
+            --allow-unsafe \
+            --output-file=requirements.txt \
+            requirements.in
+
+      - name: Sync .binder/runtime.txt to match detected Python
+        run: |
+          NEW_RUNTIME="python-${{ steps.pyver.outputs.version }}"
+          OLD_RUNTIME=$(tr -d '[:space:]' < .binder/runtime.txt)
+          if [ "$NEW_RUNTIME" != "$OLD_RUNTIME" ]; then
+            echo "$NEW_RUNTIME" > .binder/runtime.txt
+            echo "Bumped .binder/runtime.txt: $OLD_RUNTIME -> $NEW_RUNTIME"
+          fi
+
+      - name: Commit and push if anything changed
+        run: |
+          if git diff --quiet requirements.txt .binder/runtime.txt; then
+            echo "No changes; nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add requirements.txt .binder/runtime.txt
+          git commit -m "regenerate lockfile (python ${{ steps.pyver.outputs.version }}, Linux)"
+          git push

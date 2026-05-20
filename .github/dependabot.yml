@@ -1,0 +1,16 @@
+version: 2
+
+updates:
+  # Weekly check for newer GitHub Action versions. When dependabot finds
+  # one, it opens a PR. Merging the PR triggers the existing workflows
+  # (smoke-test, binder) so any breakage from the action bump surfaces
+  # immediately.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns: ["*"]
+    open-pull-requests-limit: 5
