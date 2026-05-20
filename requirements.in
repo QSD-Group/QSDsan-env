@@ -20,4 +20,3 @@ ipywidgets            # interactive widgets in tutorial notebooks
 # --- Jupyter / Binder runtime extensions (not pulled by anything else) ---
 nbgitpuller                     # serves the QSDsan tutorial content into binder
 rise                            # RISE slideshow used in tutorial 11
-jupyter_contrib_nbextensions    # classic notebook extensions (postBuild installs them)
