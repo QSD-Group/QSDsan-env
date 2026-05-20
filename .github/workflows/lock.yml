@@ -11,7 +11,7 @@ on:
     branches: [main]
     paths:
       - requirements.in
-      - .github/workflows/lock.yaml
+      - .github/workflows/lock.yml
   workflow_dispatch:
 
 permissions:

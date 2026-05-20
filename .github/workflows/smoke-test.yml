@@ -10,7 +10,7 @@ on:
       - requirements.txt
       - requirements.in
       - .binder/**
-      - .github/workflows/smoke-test.yaml
+      - .github/workflows/smoke-test.yml
   pull_request:
     paths:
       - requirements.txt
