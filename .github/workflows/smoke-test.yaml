@@ -1,0 +1,54 @@
+name: smoke-test
+
+# Verifies the locked environment still installs and imports cleanly.
+# Catches breakage before students hit it in a Binder session.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - requirements.txt
+      - requirements.in
+      - runtime.txt
+      - .binder/**
+      - .github/workflows/smoke-test.yaml
+  pull_request:
+    paths:
+      - requirements.txt
+      - requirements.in
+      - runtime.txt
+      - .binder/**
+  schedule:
+    # Weekly, Mondays 12:00 UTC. Surfaces upstream breakage early.
+    - cron: '0 12 * * 1'
+  workflow_dispatch:
+
+jobs:
+  import-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install system deps
+        run: sudo apt-get update && sudo apt-get install -y graphviz
+
+      - name: Install locked Python deps
+        run: pip install --require-hashes -r requirements.txt
+
+      - name: Import QSDsan stack and print versions
+        run: |
+          python - <<'PY'
+          import importlib
+          pkgs = ['qsdsan', 'exposan', 'biosteam', 'thermosteam',
+                  'numpy', 'scipy', 'numba', 'pandas', 'matplotlib',
+                  'chaospy', 'skfda']
+          for name in pkgs:
+              mod = importlib.import_module(name)
+              print(f'{name:<14} {getattr(mod, "__version__", "n/a")}')
+          PY

@@ -1,0 +1,23 @@
+# Source-of-truth dependency list for QSDsan-env.
+# Edit this file, then regenerate the locked requirements.txt with:
+#     pip-compile --generate-hashes --resolver=backtracking --allow-unsafe requirements.in
+# Or let CI do it via the lock workflow.
+#
+# Only top-level packages that are NOT pulled in transitively by another
+# entry are listed here. The full transitive graph (numpy, scipy, biosteam's
+# graphviz, ipywidgets' widget bundles, etc.) lives in requirements.txt.
+
+# --- QSDsan stack (pinned for reproducibility across tutorials) ---
+qsdsan==1.5.0
+exposan==1.5.0
+biosteam==2.53.10
+thermosteam==0.53.4
+
+# --- Used directly by tutorial / domain code ---
+scikit-fda            # exposan/pm2_ecorecover/data_cleaning.py
+ipywidgets            # interactive widgets in tutorial notebooks
+
+# --- Jupyter / Binder runtime extensions (not pulled by anything else) ---
+nbgitpuller                     # serves the QSDsan tutorial content into binder
+rise                            # RISE slideshow used in tutorial 11
+jupyter_contrib_nbextensions    # classic notebook extensions (postBuild installs them)
