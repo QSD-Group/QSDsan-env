@@ -33,10 +33,11 @@ jobs:
           QSDSAN_VERSION=$(grep -oP '(?<=qsdsan==)\d+\.\d+\.\d+' requirements.in)
           PY_VER=$(curl -fsSL \
             "https://raw.githubusercontent.com/QSD-Group/QSDsan/v${QSDSAN_VERSION}/pyproject.toml" \
-            | python3 -c "import sys, re, tomllib; \
-spec = tomllib.loads(sys.stdin.read())['project']['requires-python']; \
-m = re.search(r'>=\s*(\d+\.\d+)', spec); \
-print(m.group(1))")
+            | grep -oP 'requires-python\s*=\s*"\s*>=\s*\K\d+\.\d+')
+          if [ -z "$PY_VER" ]; then
+            echo "Failed to parse requires-python from QSDsan v${QSDSAN_VERSION} pyproject.toml" >&2
+            exit 1
+          fi
           echo "version=${PY_VER}" >> "$GITHUB_OUTPUT"
 
       - uses: actions/setup-python@v6
