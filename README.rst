@@ -13,7 +13,7 @@ A prebuilt `Binder <https://mybinder.org>`_ environment for `QSDsan <https://git
 For users
 =========
 
-Click the badge above. The link uses `nbgitpuller <https://github.com/jupyterhub/nbgitpuller>`_ (more info from this `post <https://discourse.jupyter.org/t/tip-speed-up-binder-launches-by-pulling-github-content-in-a-binder-link-with-nbgitpuller/922>`_ ) to:
+Click the badge above. The link uses `nbgitpuller <https://github.com/jupyterhub/nbgitpuller>`_ (more info from this `post <https://discourse.jupyter.org/t/how-to-reduce-mybinder-org-repository-startup-time/4956>`_ and these `instructions <https://discourse.jupyter.org/t/tip-speed-up-binder-launches-by-pulling-github-content-in-a-binder-link-with-nbgitpuller/922>`_) to:
 
 1. Boot a Jupyter session inside the cached QSDsan-env image.
 2. Pull the latest tutorial notebooks from the main `QSDsan <https://github.com/QSD-Group/QSDsan>`_ repo.
