@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout files in repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: build image with repo2docker, push to Docker Hub, commit binder/Dockerfile
         uses: jupyterhub/repo2docker-action@master
