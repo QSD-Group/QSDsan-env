@@ -9,7 +9,7 @@
 
 # --- QSDsan stack (pinned for reproducibility across tutorials) ---
 qsdsan==1.5.0
-exposan==1.5.0
+exposan[complete]==1.5.0
 biosteam==2.53.10
 thermosteam==0.53.4
 
