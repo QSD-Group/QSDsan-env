@@ -18,4 +18,5 @@ _build
 build
 dist
 docs/build/*
+docs/superpowers/
 htmlcov
