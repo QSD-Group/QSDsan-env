@@ -38,7 +38,7 @@ jobs:
           echo "Detected Python ${PY_VER} from QSDsan ${QSDSAN_VERSION}"
           echo "version=${PY_VER}" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ steps.pyver.outputs.version }}
 
