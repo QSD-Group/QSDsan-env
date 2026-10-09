@@ -8,14 +8,16 @@
 # graphviz, ipywidgets' widget bundles, etc.) lives in requirements.txt.
 
 # --- QSDsan stack (pinned for reproducibility across tutorials) ---
-qsdsan==1.5.0
-exposan[complete]==1.5.0
-biosteam==2.53.10
-thermosteam==0.53.4
+qsdsan==1.5.3
+exposan[complete]==1.5.3
+biosteam==2.54.0
+thermosteam==0.54.2
 
 # --- Used directly by tutorial / domain code ---
 scikit-fda            # exposan/pm2_ecorecover/data_cleaning.py
 ipywidgets            # interactive widgets in tutorial notebooks
+country-converter    # QSDsan-workshop (location names in the country-specific analysis)
+xgboost              # QSDedu Digital_Twin demo
 
 # --- Jupyter / Binder runtime extensions (not pulled by anything else) ---
 nbgitpuller                     # serves the QSDsan tutorial content into binder
