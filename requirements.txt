@@ -80,10 +80,11 @@ beautifulsoup4==4.14.3 \
     --hash=sha256:0918bfe44902e6ad8d57732ba310582e98da931428d231a5ecb9e7c703a735bb \
     --hash=sha256:6292b1c5186d356bba669ef9f7f051757099565ad9ada5dd630bd9de5fa7fb86
     # via nbconvert
-biosteam==2.53.10 \
-    --hash=sha256:7ab1c8bf689035bd9a515919ff5e82a1e766400f941f06c30302624c0855086a
+biosteam==2.54.0 \
+    --hash=sha256:fa830cad7a544f892a9d2fc6fd32eb60fc5717b31498a2a57fb3258c477e3f36
     # via
     #   -r requirements.in
+    #   hensmith
     #   qsdsan
 bleach[css]==6.3.0 \
     --hash=sha256:6f3b91b1c0a02bb9a78b5a454c92506aa0fdf197e1d5e114d2e00c6f64306d22 \
@@ -455,6 +456,10 @@ coolprop==7.2.0 \
     --hash=sha256:fa3149acadcca0f0e3ef6e5a634a803e0502bf5819dd7b2e7e01db3439a84ff5 \
     --hash=sha256:fdeb8d797099a53578f6c35362604373cc98222ca31b0d57d9a58a73ccb9a01e
     # via thermosteam
+country-converter==1.3.2 \
+    --hash=sha256:50ef52b71daaf14220d2ba9a4eef1c335146793a051376de58e8a581fa448120 \
+    --hash=sha256:60606938da156b0c611fcb5e33ee60f5a1d582e98a9e7911c7f0084feb7659f6
+    # via -r requirements.in
 cycler==0.12.1 \
     --hash=sha256:85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30 \
     --hash=sha256:88bb128f02ba341da8ef447245a9e138fae777f6a23943da4540077d3601eb1c
@@ -556,9 +561,9 @@ executing==2.2.1 \
     --hash=sha256:3632cc370565f6648cc328b32435bd120a1e4ebb20c77e3fdde9a13cd1e533c4 \
     --hash=sha256:760643d3452b4d777d295bb167ccc74c64a81df23fb5e08eff250c425a4b2017
     # via stack-data
-exposan[complete]==1.5.0 \
-    --hash=sha256:0cf008e5875a63574af57a0f663db635688630b00a1f936d9dfca3482ded0e5e \
-    --hash=sha256:c0c3686c7fb2b9f3f68c49bf8f68f83f566668a436e76e8a99d85215a9938762
+exposan[complete]==1.5.3 \
+    --hash=sha256:73d68f0820d9079bbd971f141b793cfd8059e41831e92b5fbc65dc9f8bb5944f \
+    --hash=sha256:7a4d05be848ab299cee325c5435a544e50992aa53d5abfc7371ecde4cb084f5c
     # via -r requirements.in
 fastjsonschema==2.21.2 \
     --hash=sha256:1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463 \
@@ -672,6 +677,10 @@ h11==0.16.0 \
     --hash=sha256:4e35b956cf45792e4caa5885e69fba00bdbc6ffafbfa020300e549b208ee5ff1 \
     --hash=sha256:63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86
     # via httpcore
+hensmith==0.1.2 \
+    --hash=sha256:a8209305f4b0219d6e6f9f244a9eaff11edff125b38ae4493ba92afe238cede6 \
+    --hash=sha256:efafaa993e2dfac591ef0067cdb1ae20a2ee91e1721ae686887ce141ab139c09
+    # via biosteam
 httpcore==1.0.9 \
     --hash=sha256:2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55 \
     --hash=sha256:6e34463af53fd2ab5d807f399a9b45ea31c3dfa2276f15a2c3f00afff6e176e8
@@ -1334,6 +1343,11 @@ numpy==2.4.6 \
     #   seaborn
     #   thermosteam
     #   xarray
+    #   xgboost
+nvidia-nccl-cu13==2.32.3 \
+    --hash=sha256:1459723080ac889d73a26edfa3e04383a7928ab31ac8f0ec43b3ea9548b04ff3 \
+    --hash=sha256:a5bee92b2f4af218c109f8d221c3c9adcc752b94ae0ffcb0ed5abf9341a7724c
+    # via xgboost
 openpyxl==3.1.5 \
     --hash=sha256:5282c12b107bffeef825f4617dc029afaf41d0ea60823bbb665ef3079dc79de2 \
     --hash=sha256:cf0e3cf56142039133628b5acffe8ef0c12bc902d2aadd3e0fe5878dc08d1050
@@ -1438,6 +1452,7 @@ pandas==3.0.3 \
     --hash=sha256:fed2ff7fd9779120e388e285fc029bd5cf9490cdd2e4166a9ee22c0e49a9ab09
     # via
     #   chemicals
+    #   country-converter
     #   ortools
     #   rdata
     #   salib
@@ -1834,9 +1849,9 @@ pyzmq==27.1.0 \
     #   ipykernel
     #   jupyter-client
     #   jupyter-server
-qsdsan==1.5.0 \
-    --hash=sha256:532cd13e213603b409d72e90437078246f06b6e40bb3762c9b328d7ebdf42545 \
-    --hash=sha256:a515ee1dfcb964494871c1fc230d66626a90b212f0a63fa0c523c10b8d38c0be
+qsdsan==1.5.3 \
+    --hash=sha256:49e29f0bc0e9a13ab2b5a5dc31388f47513b2b5ccef8889b1f6da81113362d38 \
+    --hash=sha256:b91c5eff069a3703a47e0a2f9b26e8fe8fa875c1f50c7f1a59b5e34a96e33476
     # via
     #   -r requirements.in
     #   exposan
@@ -2121,6 +2136,7 @@ scipy==1.17.1 \
     #   scikit-learn
     #   thermo
     #   thermosteam
+    #   xgboost
 seaborn==0.13.2 \
     --hash=sha256:636f8336facf092165e27924f223d3c62ca560b1f2bb5dff7ab7fad265361987 \
     --hash=sha256:93e60a40988f4d65e9f4885df477e2fdaff6b73a9ded434c1ab356dd57eefff7
@@ -2160,8 +2176,8 @@ thermo==0.6.0 \
     --hash=sha256:fe75036747c052173633a0799b0e9907b5a5305e440029f76c28dffcc2c5b925 \
     --hash=sha256:ff95281a9e453338f45a0dde1723fe8269c4edcad800b87575682c0945385223
     # via thermosteam
-thermosteam==0.53.4 \
-    --hash=sha256:b46f3f4e963c0c70865ff5823b9006b405a7884f5550e5b29408b55b2638a78b
+thermosteam==0.54.2 \
+    --hash=sha256:4a8a6a03c52ba186f773ae5fabc1a19636bdf1635d57ac4fe580a10044da50f1
     # via
     #   -r requirements.in
     #   biosteam
@@ -2266,6 +2282,15 @@ xarray==2026.4.0 \
     --hash=sha256:c4ac9a01a945d90d5b1628e2af045099a9d4943536d4f2ee3ae963c3b222d15b \
     --hash=sha256:d43751d9fb4a90f9249c30431684f00c41bc874f1edccd862631a40cbc0edf08
     # via rdata
+xgboost==3.4.1 \
+    --hash=sha256:1ea15f15f661825b6a67d87674fb9604a1abb38dd0d4c5cf0486fc85f5203e83 \
+    --hash=sha256:2d30fa513673101f542fdcbd18f30c8f96c064046f798635ac08663e9969f81b \
+    --hash=sha256:6968a4c71efdfa859df0dfcad0d99211c95c28c4ffd6aecff46efff77d18026a \
+    --hash=sha256:6adf2afa396da2ae8ed30295b50b99d4712eed9a6e0ce6cfe069290e4335e51f \
+    --hash=sha256:7faaf99de26719c22bfae883a02bd56b5a3c2203122616e563cc72b7191b5c96 \
+    --hash=sha256:a7afd7dbace0951c93aa85ffe046e54bc40893f5b51cd3e7991eb157bf9c7c7c \
+    --hash=sha256:e9312b30e5679d27c1d8b9ee97e092b964d960a672d5d406d9fb3cd0845c9797
+    # via -r requirements.in
 xlrd==2.0.2 \
     --hash=sha256:08b5e25de58f21ce71dc7db3b3b8106c1fa776f3024c54e45b45b374e89234c9 \
     --hash=sha256:ea762c3d29f4cca48d82df517b6d89fbce4db3107f9d78713e48cd321d5c9aa9
